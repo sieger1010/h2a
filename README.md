@@ -2,6 +2,9 @@
 ### Normalized, and Combined Employment Data for H-2A Workers in the United States
 <br>
 
+## Status
+Exported data in the pkl and csv folders contain duplicate case numbers. I'm investigating the reason to have duplicate cases, and how to best manage them in the future.
+
 ## Purpose
 This repository is intended to provide a single source for all H-2A employment data in the United States, and to make it easier to compare years together by normalizing the data. This data is intended for anyone interested in doing their own analysis using specialized software, or programs like Excel.
 
@@ -11,6 +14,8 @@ When analyzing H-2A data, it can be difficult to compare changes year over year 
 1. The data is not normalized across all years.
 2. The program dates for the DOL go from October 1st, to September 30th. This can create confusion when comparing reported data to calendar years.
 3. It's not obvious where to find historical data on the H-2A labor force.
+4. Reported data changes by year. Currently, the more recent the reported year, the more data that is included.
+5. Duplicated cases can be found in the data.
 
 
 ## Data
@@ -26,7 +31,9 @@ The data included in this repository are from:
 [FY2013](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2013.xls) - [FY2012](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2012.xlsx) - [FY2011](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2011.xlsx) - [FY2010](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2010.xlsx) - [FY2009](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2009.xlsx) - [FY2008](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2008.xlsx)
 
 ## Insights
-Data insights will be provided here free for use in the future.
+Data insights will be provided here free for use in the future. All python scripts are being created and tested in the [Spyder IDE](https://www.spyder-ide.org/).
+
+<br>
 
 ### Disclaimer
 I make no guarantees about the accuracy of this data, but will do my best to keep it up-to-date and error-free. If you find any errors or have suggestions for improvement, please let me know, or make your own contribution!
