@@ -204,7 +204,12 @@ print('Exported program years 13-08 as pkl and csv then removed from memory...')
 print('Finished exporting all program years from 2025 to 2008 to pkl and csv folders.')
 # %%
 # Now all years will be concatenated to one dataframe
-#py25_20 = pd.read_pickle('pkl/py_25-20.pkl')
-#py19_17 = pd.read_pickle('pkl/py_19-17.pkl')
+py25_20 = pd.read_pickle('pkl/py_25-20.pkl')
+py19_17 = pd.read_pickle('pkl/py_19-17.pkl')
+py16_15 = pd.read_pickle('pkl/py_16-15.pkl')
+py14 = pd.read_pickle('pkl/py_14.pkl')
+py13_08 = pd.read_pickle('pkl/py_13-08.pkl')
 
-
+df = pd.concat([py13_08, py14, py16_15, py19_17, py25_20])
+df = df.reset_index(drop=True)
+pd.to_pickle(df, 'pkl/py08-25.pkl')
