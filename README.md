@@ -33,6 +33,11 @@ The data included in this repository are from:
 ## Insights
 Data insights will be provided here free for use in the future. All python scripts are being created and tested in the [Spyder IDE](https://www.spyder-ide.org/).
 
+## Dependencies
+xlrs package is used to read Excel files.<br>
+xlrd package is used to read Excel files.<br>
+pandas package is used to manipulate dataframes.
+
 <br>
 
 ### Disclaimer
