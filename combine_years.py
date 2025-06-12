@@ -13,11 +13,11 @@ All groups of years exported as pkl will have matching columns.
 print('This script takes several minutes to read all program years from excel format and export as pkl. Progress updates will be printed to the console. Script finishes after processing program year 2008.')
 import pandas as pd
 
-rename_columns = ['case_number', 'case_status', 'employer_name', 'employer_dba', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_needed', 'total_workers_requested',
+rename_columns = ['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'employer_dba', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_needed', 'total_workers_requested',
                   'total_workers_certified', 'employment_begin_date', 'employment_end_date', 'worksite_address', 'worksite_city', 'worksite_state', 'worksite_postal',
                   'worksite_county', 'housing_address', 'housing_city', 'housing_state', 'housing_postal', 'housing_county']
 
-py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'EMPLOYER_NAME', 'TRADE_NAME_DBA', 'NAICS_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE', 'TOTAL_WORKERS_NEEDED',
+py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'RECEIVED_DATE', 'DECISION_DATE', 'EMPLOYER_NAME', 'TRADE_NAME_DBA', 'NAICS_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE', 'TOTAL_WORKERS_NEEDED',
               'TOTAL_WORKERS_H2A_REQUESTED', 'TOTAL_WORKERS_H2A_CERTIFIED', 'EMPLOYMENT_BEGIN_DATE', 'EMPLOYMENT_END_DATE', 'WORKSITE_ADDRESS', 'WORKSITE_CITY',
               'WORKSITE_STATE', 'WORKSITE_POSTAL_CODE', 'WORKSITE_COUNTY', 'HOUSING_ADDRESS_LOCATION', 'HOUSING_CITY', 'HOUSING_STATE', 'HOUSING_POSTAL_CODE', 'HOUSING_COUNTY']
 col_rename = dict(zip(py_columns, rename_columns))
@@ -66,11 +66,11 @@ print('Exported program years 25-20 as pkl and csv then removed from memory...')
 # Columns no longer existing from 2019 onwards: TOTAL_WORKERS_NEEDED, WORKSITE_ADDRESS, HOUSING_ADDRESS_LOCATION, HOUSING_CITY, HOUSING_STATE, HOUSING_POSTAL_CODE, HOUSING_COUNTY
 # Columns with nan data will need to be created if 2019 and older datasets will be concatenated to py_25-20
 
-py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'EMPLOYER_NAME', 'TRADE_NAME_DBA', 'NAICS_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE',
+py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'CASE_RECEIVED_DATE', 'DECISION_DATE', 'EMPLOYER_NAME', 'TRADE_NAME_DBA', 'NAICS_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE',
               'NBR_WORKERS_REQUESTED', 'NBR_WORKERS_CERTIFIED', 'JOB_START_DATE', 'JOB_END_DATE', 'WORKSITE_CITY',
               'WORKSITE_STATE', 'WORKSITE_POSTAL_CODE', 'WORKSITE_COUNTY']
 
-rename_columns = ['case_number', 'case_status', 'employer_name', 'employer_dba', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_requested',
+rename_columns = ['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'employer_dba', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_requested',
                   'total_workers_certified', 'employment_begin_date', 'employment_end_date', 'worksite_city', 'worksite_state', 'worksite_postal', 
                   'worksite_county']
 
@@ -107,11 +107,11 @@ print('Exported program years 19-17 as pkl and csv then removed from memory...')
 # %%
 
 # TRADE_NAME_DBA, WORKSITE_COUNTY removed; NAICS_CODE renamed to NAIC_CODE.
-py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'EMPLOYER_NAME', 'NAIC_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE',
+py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'CASE_RECEIVED_DATE', 'DECISION_DATE', 'EMPLOYER_NAME', 'NAIC_CODE', 'SOC_CODE', 'SOC_TITLE', 'JOB_TITLE',
               'NBR_WORKERS_REQUESTED', 'NBR_WORKERS_CERTIFIED', 'JOB_START_DATE', 'JOB_END_DATE', 'WORKSITE_CITY',
               'WORKSITE_STATE', 'WORKSITE_POSTAL_CODE']
 
-rename_columns = ['case_number', 'case_status', 'employer_name', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_requested',
+rename_columns = ['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'employer_naics', 'soc_code', 'soc_title', 'job_title', 'total_workers_requested',
                   'total_workers_certified', 'employment_begin_date', 'employment_end_date', 'worksite_city', 'worksite_state', 'worksite_postal']
 
 col_rename = dict(zip(py_columns, rename_columns))
@@ -135,9 +135,9 @@ del [py16, py15, df]
 print('Exported program years 16-15 as pkl and csv then removed from memory...')
 # %%
 # NAIC_CODE, WORKSITE_POSTAL_CODE removed; CASE_NUMBER, NBR_WORKERS_REQUESTED, JOB_START_DATE, JOB_END_DATE, WORKSITE_CITY, WORKSITE_STATE renamed.
-py_columns = ['CASE_NO', 'CASE_STATUS', 'EMPLOYER_NAME', 'SOC_CODE_ID', 'SOC_TITLE', 'JOB_TITLE', 'NBR_WORKERS_CERTIFIED', 'CERTIFICATION_BEGIN_DATE', 'CERTIFICATION_END_DATE',
+py_columns = ['CASE_NO', 'CASE_STATUS', 'CASE_RECEIVED_DATE', 'DECISION_DATE', 'EMPLOYER_NAME', 'SOC_CODE_ID', 'SOC_TITLE', 'JOB_TITLE', 'NBR_WORKERS_CERTIFIED', 'CERTIFICATION_BEGIN_DATE', 'CERTIFICATION_END_DATE',
               'WORKSITE_LOCATION_CITY', 'WORKSITE_LOCATION_STATE']
-rename_columns = ['case_number', 'case_status', 'employer_name', 'soc_code', 'soc_title', 'job_title', 'total_workers_certified', 'employment_begin_date', 'employment_end_date',
+rename_columns = ['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'soc_code', 'soc_title', 'job_title', 'total_workers_certified', 'employment_begin_date', 'employment_end_date',
                   'worksite_city', 'worksite_state']
 col_rename = dict(zip(py_columns, rename_columns))
 
@@ -152,9 +152,9 @@ del py14
 print('Exported program year 14 as pkl and csv then removed from memory...')
 # %%
 # SOC_CODE_ID, SOC_TITLE removed; WORKSITE_LOCATION_CITY, WORKSITE_LOCATION_STATE renamed.
-py_columns = ['CASE_NO', 'CASE_STATUS', 'EMPLOYER_NAME', 'JOB_TITLE', 'NBR_WORKERS_CERTIFIED', 'CERTIFICATION_BEGIN_DATE', 'CERTIFICATION_END_DATE',
+py_columns = ['CASE_NO', 'CASE_STATUS', 'CASE_RECEIVED_DATE', 'DECISION_DATE', 'EMPLOYER_NAME', 'JOB_TITLE', 'NBR_WORKERS_CERTIFIED', 'CERTIFICATION_BEGIN_DATE', 'CERTIFICATION_END_DATE',
               'ALIEN_WORK_CITY', 'ALIEN_WORK_STATE']
-rename_columns = ['case_number', 'case_status', 'employer_name', 'job_title', 'total_workers_certified', 'employment_begin_date', 'employment_end_date',
+rename_columns = ['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'job_title', 'total_workers_certified', 'employment_begin_date', 'employment_end_date',
                   'worksite_city', 'worksite_state']
 col_rename = dict(zip(py_columns, rename_columns))
 
@@ -214,47 +214,6 @@ df = pd.concat([py25_20, py19_17, py16_15, py14, py13_08])
 df = df.reset_index(drop=True)
 pd.to_pickle(df, 'pkl/py_25-08.pkl')
 df.to_csv('csv/py_25-08.csv')
-del df
+del [df, py25_20, py19_17, py16_15, py14, py13_08]
 # %%
-# Paired NAICS codes from 2022 up with NAICS 22 descriptions. NAICS definitions downloaded from: https://www.census.gov/naics/2022NAICS/2-6%20digit_2022_Codes.xlsx
-# More NAICS docs available here: https://www.census.gov/naics/?48967
-import pandas as pd
 
-df = pd.read_pickle('pkl/py_25-08.pkl')
-naics_22 = pd.read_excel('naics_codes/2-6 digit_2022_Codes.xlsx')
-naics_17 = pd.read_excel('naics_codes/2-6 digit_2017_Codes.xlsx')
-naics_12 = pd.read_excel('naics_codes/2-digit_2012_Codes.xls')
-naics_07 = pd.read_excel('naics_codes/naics07.xls', skiprows=[1])
-
-# naics_07 has some data quality issues. They have chosen to use a dash in 3 different areas to show that a range is sharing the description, e.g. "31-33", "44-45", and "48-49".
-# This is incompatible for data merging, and is not consistent with other documents, so I have decided to simply remove the dashes from 3 cells.
-# It is not expected to have a significant impact on the quality of merged data.
-naics_07.iloc[273, 1] = naics_07.iloc[273, 1][:2]
-naics_07.iloc[1202, 1] = naics_07.iloc[1202, 1][:2]
-naics_07.iloc[1378, 1] = naics_07.iloc[1378, 1][:2]
-naics_07['2007 NAICS US Code'] = pd.to_numeric(naics_07['2007 NAICS US Code'])
-
-df['employment_begin_date'] = pd.to_datetime(df['employment_begin_date'], errors='coerce', yearfirst=True)
-df['employment_begin_date'] = df['employment_begin_date'].astype('datetime64[s]')
-df['employment_end_date'] = pd.to_datetime(df['employment_end_date'], errors='coerce', yearfirst=True)
-df['employment_end_date'] = df['employment_end_date'].astype('datetime64[s]')
-
-# Extra space is coming directly from naics downloaded file.
-#df = df.merge(naics_22[['2022 NAICS US Title']], how='left', left_on='employer_naics', right_on=naics_22['2022 NAICS US   Code'])
-df22 = df[df['employment_begin_date'] >= '2022-01-01']
-df22 = df22.merge(naics_22['2022 NAICS US Title'], how='left', left_on='employer_naics', right_on=naics_22['2022 NAICS US   Code'])
-df22 = df22.rename(columns={'2022 NAICS US Title': 'naics_title'})
-
-df17 = df[(df['employment_begin_date'] >= '2017-01-01') & (df['employment_begin_date'] < '2022-01-01')]
-df17 = df17.merge(naics_17['2017 NAICS US Title'], how='left', left_on='employer_naics', right_on=naics_17['2017 NAICS US   Code'])
-df17 = df17.rename(columns={'2017 NAICS US Title': 'naics_title'})
-
-df12 = df[(df['employment_begin_date'] >= '2012-01-01') & (df['employment_begin_date'] < '2017-01-01')]
-df12 = df12.merge(naics_12['2012 NAICS US Title'], how='left', left_on='employer_naics', right_on=naics_12['2012 NAICS US   Code'])
-df12 = df12.rename(columns={'2012 NAICS US Title': 'naics_title'})
-
-df07 = df[df['employment_begin_date'] < '2012-01-01']
-df07 = df07.merge(naics_07['2007 NAICS US Title'], how='left', left_on='employer_naics', right_on=naics_07['2007 NAICS US Code'])
-df07 = df07.rename(columns={'2007 NAICS US Title': 'naics_title'})
-
-df2 = pd.concat([df22, df17, df12, df07])
