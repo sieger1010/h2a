@@ -2,6 +2,9 @@
 ### Normalized, and Combined Employment Data for H-2A Workers in the United States
 <br>
 
+## Visualization
+Visualized data is available for exploration on Tableau Public. [Tableau Public Sieger.Bokschoten](https://public.tableau.com/app/profile/sieger.bokschoten/viz/H-2AWorkers/H-2AWorkersbyYearStateandIndustry/)
+
 ## Status
 Exported data in the pkl and csv folders contain duplicate case numbers. I'm investigating the reason to have duplicate cases, and how to best manage them in the future.
 
