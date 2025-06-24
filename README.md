@@ -2,11 +2,8 @@
 ### Normalized, and Combined Employment Data for H-2A Workers in the United States
 <br>
 
-## Visualization
+## Visualizations
 Visualized data is available for exploration on Tableau Public. [Tableau Public Sieger.Bokschoten](https://public.tableau.com/app/profile/sieger.bokschoten/viz/H-2AWorkers/H-2AWorkersbyYearStateandIndustry/)
-
-## Status
-Exported data in the pkl and csv folders contain duplicate case numbers. I'm investigating the reason to have duplicate cases, and how to best manage them in the future.
 
 ## Purpose
 This repository is intended to provide a single source for all H-2A employment data in the United States, and to make it easier to compare years together by normalizing the data. This data is intended for anyone interested in doing their own analysis using specialized software, or programs like Excel.
@@ -42,6 +39,10 @@ xlrd package is used to read Excel files.<br>
 pandas package is used to manipulate dataframes.
 
 <br>
+
+## Discovered Issues
+- employment_end_date - dates are not showing up as expected, when data was reviewed in Tableau, found dates from year 3000+.
+- Duplicate Case Numbers found with differing data. So far it appears this does not affect total number of workers certified, but will require more investigation.
 
 ### Disclaimer
 I make no guarantees about the accuracy of this data, but will do my best to keep it up-to-date and error-free. If you find any errors or have suggestions for improvement, please let me know, or make your own contribution!
