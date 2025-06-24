@@ -4,6 +4,8 @@
 
 ## Visualizations
 Visualized data is available for exploration on Tableau Public. [Tableau Public Sieger.Bokschoten](https://public.tableau.com/app/profile/sieger.bokschoten/viz/H-2AWorkers/H-2AWorkersbyYearStateandIndustry/)
+<br>
+![Screenshot of Tableau Public Sieger.Bokschoten](screenshots/Screenshot1.png)
 
 ## Purpose
 This repository is intended to provide a single source for all H-2A employment data in the United States, and to make it easier to compare years together by normalizing the data. This data is intended for anyone interested in doing their own analysis using specialized software, or programs like Excel.
