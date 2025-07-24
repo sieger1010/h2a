@@ -32,18 +32,24 @@ The data included in this repository are from:
 <br>
 [FY2013](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2013.xls) - [FY2012](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2012.xlsx) - [FY2011](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2011.xlsx) - [FY2010](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H-2A_FY2010.xlsx) - [FY2009](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2009.xlsx) - [FY2008](https://www.dol.gov/sites/dolgov/files/ETA/oflc/pdfs/H2A_FY2008.xlsx)
 
+Exported data ready for analysis is available for download in the "processed_exports" folder. Data is available in csv, pkl, feather, and parquet formats, download "cleaned_final.xxx" for most up-to-date versions.
+Direct links here:
+[CSV](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.csv), [Pickle](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.pkl), [Feather](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.feather), [Parquet](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.parquet)
+
 ## Insights
 Data insights will be provided here free for use in the future. All python scripts are being created and tested in the [Spyder IDE](https://www.spyder-ide.org/).
 
 ## Dependencies
+Python 3.12 or higher.<br>
 xlrs package is used to read Excel files.<br>
 xlrd package is used to read Excel files.<br>
-pandas package is used to manipulate dataframes.
+pandas package is used to manipulate dataframes.<br>
+pyarrow for data exports to feather/parquet.
 
 <br>
 
 ## Discovered Issues
-- employment_end_date - dates are not showing up as expected, when data was reviewed in Tableau, found dates from year 3000+.
+- ~~employment_end_date - dates are not showing up as expected, when data was reviewed in Tableau, found dates from year 3000+.~~
 - Duplicate Case Numbers found with differing data. So far it appears this does not affect total number of workers certified, but will require more investigation.
 
 ### Disclaimer

@@ -5,8 +5,9 @@ This document shows steps taken to produce data insights on H-2A labor.
 @author: sieger1010
 """
 import pandas as pd
+df = pd.read_pickle('processed_exports/data_with_naics_title.pkl')
 
-df = pd.read_pickle('pkl/py_25-08.pkl')
+#df = pd.read_pickle('pkl/py_25-08.pkl')
 
 # Remove duplicates, determined by case_number and case_status
 df1 = df.drop_duplicates(subset=['case_number'], keep='last')
@@ -27,3 +28,7 @@ housing_addresses = (
     .apply(lambda x: x.str.strip(' .\t\n'), axis=1)
     .drop_duplicates(keep='first')
     )
+
+print(df.isna().sum())
+print(df.employer_name.value_counts())
+
