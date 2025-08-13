@@ -5,7 +5,9 @@ This document shows steps taken to produce data insights on H-2A labor.
 @author: sieger1010
 """
 import pandas as pd
-df = pd.read_pickle('processed_exports/data_with_naics_title.pkl')
+import matplotlib.pyplot as plt
+#df = pd.read_pickle('processed_exports/data_with_naics_title.pkl')
+df = pd.read_feather('processed_exports/cleaned_final.feather')
 
 #df = pd.read_pickle('pkl/py_25-08.pkl')
 
@@ -29,6 +31,9 @@ housing_addresses = (
     .drop_duplicates(keep='first')
     )
 
-print(df.isna().sum())
-print(df.employer_name.value_counts())
+df.isna().sum()
+df.employer_name.value_counts()
+employer_counts = df.employer_name.value_counts()
 
+plt.hist(df['total_workers_certified'][df['total_workers_certified'] > 50], bins=20)
+plt.show()

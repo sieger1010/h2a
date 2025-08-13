@@ -3,4 +3,4 @@
 - [x] Add "RECEIVED DATE" and "DECISION DATE" columns to the core data so other types of time analysis can be done.
 - [x] Fix end_employment_date issue with years far out of expected range.
 - [x] Fix begin_emplpoyment_date issues with years far out of expected range.
-
+- [ ] Rename North Carolina Growers Association orders to standardize their names. Multiple values are appearing in the data set, but they should all be related to the same association.
