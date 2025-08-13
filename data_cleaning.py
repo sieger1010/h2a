@@ -57,6 +57,9 @@ df['job_title'] = df['job_title'].str.title()
 #Error when exporting to feather. worksite_postal and housing_postal contain an int object.
 df['worksite_postal'] = df['worksite_postal'].astype(str)
 df['housing_postal'] = df['housing_postal'].astype(str)
+df['employer_naics'] = df['employer_naics'].astype(str)
+
+df.dtypes
 
 #Export cleaned dataset to csv, pkl, feather
 df.to_csv('processed_exports/cleaned_final.csv')
