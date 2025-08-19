@@ -11,28 +11,74 @@ import pandas as pd
 df = pd.read_pickle('processed_exports/data_with_naics_title.pkl')
 #errors need to be coerced due to an invalid datetime in 3019 due to datatype, unable to select individual row and correct
 df['employment_begin_date'] = pd.to_datetime(df['employment_begin_date'], errors='coerce')
+
+#To find bad dates in employment begin date, open df in the spyder variable explorer and sort column descending.
+#Results should not be ommitted from the dataset, because even though employment_begin_date is far out of range, the case status is marked as "Certified".
+#Cause of the error is unknown, possibly human error on data entry of work order, dates should be manually corrected to best estimate based on end_employment_date
+bad_dates = df[df['employment_begin_date'] > '2025-12-31']
+
+bad_indices = bad_dates.index.tolist()
+
+#For now, I'm deciding to impute the begin_employment_year based on the received_date year.
+#This seems like a good enough solution for now, and will make updating data more automatic in the future.
+#Edge cases may create incorrect data, but at this time only 7 rows seem to have issues, and none of them are negatively impacted.
+for index in bad_indices:
+    #preserve original date information so only year will change
+    old_timestamp = df.iloc[index, 14]
+    received_date_year = df.iloc[index, 2].year
+    
+    #overwrite bad year with same year as the received_date
+    new_timestamp = pd.Timestamp(year=received_date_year, month=old_timestamp.month, day=old_timestamp.day,
+                                 hour=old_timestamp.hour, minute=old_timestamp.minute, second=old_timestamp.second) 
+    df.iloc[index, 14] = new_timestamp
+
+#####Old code    
 #error found at row index 62765 'employment_begin_date' == '12/20/1011' - manually changing date to 2022/12/20 as this is best guest for typo correction
 # rows 62765, 119225, 137675, 191435, 115112, 111327, 1119504, 97169 all have bad dates. Correcting each to match year of 'employment_end_date'
-df.iloc[62765, 14] = '2022-12-20 00:00:00'
-df.iloc[119225, 14] = '2019-03-31 00:00:00'
-df.iloc[137675, 14] = '2018-05-22 00:00:00'
-df.iloc[191435, 14] = '2013-07-01 00:00:00'
-df.iloc[115112, 14] = '2019-01-22 00:00:00'
-df.iloc[111327, 14] = '2019-03-08 00:00:00'
-df.iloc[111326, 14] = '2019-01-22 00:00:00'
-df.iloc[119504, 14] = '2018-11-21 00:00:00' #setting employment_begin_date to previous year so it is not before employment_end_date
-df.iloc[97169, 14] = '2020-07-15 00:00:00'
+# df.iloc[62765, 14] = '2022-12-20 00:00:00'
+# df.iloc[119225, 14] = '2019-03-31 00:00:00'
+# df.iloc[137675, 14] = '2018-05-22 00:00:00'
+# df.iloc[191435, 14] = '2013-07-01 00:00:00'
+# df.iloc[115112, 14] = '2019-01-22 00:00:00'
+# df.iloc[111327, 14] = '2019-03-08 00:00:00'
+# df.iloc[111326, 14] = '2019-01-22 00:00:00'
+# df.iloc[119504, 14] = '2018-11-21 00:00:00' #setting employment_begin_date to previous year so it is not before employment_end_date
+# df.iloc[97169, 14] = '2020-07-15 00:00:00'
+######
 
 df['employment_begin_date'] = df['employment_begin_date'].astype('datetime64[s]')
 
 
-df['employment_end_date_2'] = pd.to_datetime(df['employment_end_date'], errors='coerce')
-bad_dates = df[df['employment_end_date_2'].isna()]
+df['employment_end_date'] = pd.to_datetime(df['employment_end_date'], errors='coerce')
+######Old code
+#bad_dates = df[df['employment_end_date_2'].isna()]
 #bad employment_end_date found at index 17896
-df.iloc[17896, 15] = '2026-06-20 00:00:00'
+#df.iloc[17896, 15] = '2026-06-20 00:00:00'
+######
+
+# employment_end_date years are appearing much higher than expected range, this is causing the dates to be misinterpreted as datetime[ns]
+# correcting all out of range dates in a similar way to the previous example of employment_begin_date should correct the column.
+bad_dates = df[df['employment_end_date'] > pd.to_datetime('2028-01-01')]
+bad_indices = bad_dates.index.tolist()
+
+for index in bad_indices:
+    row = df.iloc[index]
+    begin_date = row['employment_begin_date']
+    end_date = row['employment_end_date']
+    if begin_date.month > end_date.month:
+        # If emp end month is less than the start month, it's safe to say the workers are returning in the next calendar year, so +1 to year.
+        new_timestamp = pd.Timestamp(year=(begin_date.year + 1), month=end_date.month, day=end_date.day,
+                                     hour=end_date.hour, minute=end_date.minute, second=end_date.second)
+        df.iloc[index, 15] = new_timestamp
+    else:
+        new_timestamp = pd.Timestamp(year=begin_date.year, month=end_date.month, day=end_date.day,
+                                     hour=end_date.hour, minute=end_date.minute, second=end_date.second)
+        df.iloc[index, 15] = new_timestamp
+    
+
 df['employment_end_date'] = pd.to_datetime(df['employment_end_date'])
 df['employment_end_date'] = df['employment_end_date'].astype('datetime64[s]')
-df = df.drop(columns='employment_end_date_2')
+#df = df.drop(columns='employment_end_date_2')
 
 
 df['total_workers_needed'] = df['total_workers_needed'].astype('Int64')

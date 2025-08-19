@@ -13,11 +13,11 @@ from the census.gov. All naics documents are downloaded from: https://www.census
 import pandas as pd
 
 # even though this file is inside the 'processed_exports' folder, when running the file in the spyder editor, the working directory does not change.
-df = pd.read_pickle('pkl/py_25-08.pkl')
-naics_22 = pd.read_excel('naics_codes/2-6 digit_2022_Codes.xlsx')
-naics_17 = pd.read_excel('naics_codes/2-6 digit_2017_Codes.xlsx')
-naics_12 = pd.read_excel('naics_codes/2-digit_2012_Codes.xls')
-naics_07 = pd.read_excel('naics_codes/naics07.xls', skiprows=[1])
+df = pd.read_pickle('../pkl/py_25-08.pkl')
+naics_22 = pd.read_excel('../naics_codes/2-6 digit_2022_Codes.xlsx')
+naics_17 = pd.read_excel('../naics_codes/2-6 digit_2017_Codes.xlsx')
+naics_12 = pd.read_excel('../naics_codes/2-digit_2012_Codes.xls')
+naics_07 = pd.read_excel('../naics_codes/naics07.xls', skiprows=[1])
 
 # naics_07 has some data quality issues. They have chosen to use a dash in 3 different areas to show that a range is sharing the description, e.g. "31-33", "44-45", and "48-49".
 # This is incompatible for data merging, and is not consistent with other documents, so I have decided to simply remove the dashes from 3 cells.
@@ -52,7 +52,8 @@ df2 = pd.concat([df22, df17, df12, df07])
 df2 = df2.reindex(columns=['case_number', 'case_status', 'received_date', 'decision_date', 'employer_name', 'employer_dba', 'employer_naics', 'naics_title', 'soc_code', 'soc_title', 'job_title', 'total_workers_needed', 'total_workers_requested',
                   'total_workers_certified', 'employment_begin_date', 'employment_end_date', 'worksite_address', 'worksite_city', 'worksite_state', 'worksite_postal',
                   'worksite_county', 'housing_address', 'housing_city', 'housing_state', 'housing_postal', 'housing_county'])
+df2 = df2.reset_index(drop=True)
 
-pd.to_pickle(df2, 'processed_exports/data_with_naics_title.pkl')
-df2.to_csv('processed_exports/data_with_naics_title.csv')
-del [df07, df12, df17, df22, naics_07, naics_12, naics_17, naics_22, df]
+pd.to_pickle(df2, '../processed_exports/data_with_naics_title.pkl')
+df2.to_csv('../processed_exports/data_with_naics_title.csv')
+del [df07, df12, df17, df22, naics_07, naics_12, naics_17, naics_22, df, df2]

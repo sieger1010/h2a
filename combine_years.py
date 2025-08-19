@@ -23,7 +23,7 @@ py_columns = ['CASE_NUMBER', 'CASE_STATUS', 'RECEIVED_DATE', 'DECISION_DATE', 'E
 col_rename = dict(zip(py_columns, rename_columns))
 # %%
 # Get most recent data from 2025 to 2020, reduce number of columns from each data set, then concat all years and export as pickle.
-py25 = pd.read_excel('dol_reporting_data/H-2A_Disclosure_Data_FY2025_Q2.xlsx')
+py25 = pd.read_excel('dol_reporting_data/H-2A_Disclosure_Data_FY2025_Q3.xlsx')
 py25 = py25[py_columns]
 py25 = py25.rename(columns=col_rename)
 print('Processed py25')
