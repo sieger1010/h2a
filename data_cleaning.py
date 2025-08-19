@@ -7,6 +7,8 @@ The intention is to make minimal adjustements, preserving the original data as m
 """
 
 import pandas as pd
+import sqlite3
+
 
 df = pd.read_pickle('processed_exports/data_with_naics_title.pkl')
 #errors need to be coerced due to an invalid datetime in 3019 due to datatype, unable to select individual row and correct
@@ -32,29 +34,12 @@ for index in bad_indices:
                                  hour=old_timestamp.hour, minute=old_timestamp.minute, second=old_timestamp.second) 
     df.iloc[index, 14] = new_timestamp
 
-#####Old code    
-#error found at row index 62765 'employment_begin_date' == '12/20/1011' - manually changing date to 2022/12/20 as this is best guest for typo correction
-# rows 62765, 119225, 137675, 191435, 115112, 111327, 1119504, 97169 all have bad dates. Correcting each to match year of 'employment_end_date'
-# df.iloc[62765, 14] = '2022-12-20 00:00:00'
-# df.iloc[119225, 14] = '2019-03-31 00:00:00'
-# df.iloc[137675, 14] = '2018-05-22 00:00:00'
-# df.iloc[191435, 14] = '2013-07-01 00:00:00'
-# df.iloc[115112, 14] = '2019-01-22 00:00:00'
-# df.iloc[111327, 14] = '2019-03-08 00:00:00'
-# df.iloc[111326, 14] = '2019-01-22 00:00:00'
-# df.iloc[119504, 14] = '2018-11-21 00:00:00' #setting employment_begin_date to previous year so it is not before employment_end_date
-# df.iloc[97169, 14] = '2020-07-15 00:00:00'
-######
 
 df['employment_begin_date'] = df['employment_begin_date'].astype('datetime64[s]')
 
 
 df['employment_end_date'] = pd.to_datetime(df['employment_end_date'], errors='coerce')
-######Old code
-#bad_dates = df[df['employment_end_date_2'].isna()]
-#bad employment_end_date found at index 17896
-#df.iloc[17896, 15] = '2026-06-20 00:00:00'
-######
+
 
 # employment_end_date years are appearing much higher than expected range, this is causing the dates to be misinterpreted as datetime[ns]
 # correcting all out of range dates in a similar way to the previous example of employment_begin_date should correct the column.
@@ -105,10 +90,17 @@ df['worksite_postal'] = df['worksite_postal'].astype(str)
 df['housing_postal'] = df['housing_postal'].astype(str)
 df['employer_naics'] = df['employer_naics'].astype(str)
 
-df.dtypes
+# Dataset contains some completely duplicated rows. Remove only rows that are fully duplicated.
+df = df.drop_duplicates()
+# Need to reindex
+df = df.reset_index(drop=True)
 
 #Export cleaned dataset to csv, pkl, feather
 df.to_csv('processed_exports/cleaned_final.csv')
 df.to_pickle('processed_exports/cleaned_final.pkl')
 df.to_feather('processed_exports/cleaned_final.feather')
 df.to_parquet('processed_exports/cleaned_final.parquet', compression=None)
+#Finally, export as SQLite DB
+conn = sqlite3.connect('processed_exports/h2a.db')
+df.to_sql('Orders', conn, index=False, if_exists='replace')
+conn.close()

@@ -13,6 +13,7 @@ df = pd.read_feather('processed_exports/cleaned_final.feather')
 
 conn = sqlite3.connect('processed_exports/h2a.db')
 df.to_sql('Orders', conn, index=False, if_exists='replace')
+conn.close()
 
 
 # cursor = conn.cursor()
