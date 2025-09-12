@@ -34,7 +34,7 @@ The data included in this repository are from:
 
 Exported data ready for analysis is available for download in the "processed_exports" folder. Data is available in csv, pkl, feather, and parquet formats, download "cleaned_final.xxx" for most up-to-date versions.
 Direct links here:
-[CSV](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.csv), [Pickle](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.pkl), [Feather](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.feather), [Parquet](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.parquet)
+[CSV](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.csv), [Pickle](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.pkl), [Feather](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.feather), [Parquet](https://github.com/sieger1010/h2a/blob/main/processed_exports/cleaned_final.parquet), Single SQL Table [SQLite](https://github.com/sieger1010/h2a/blob/main/processed_exports/h2a.db)
 
 ## Insights
 Data insights will be provided here free for use in the future. All python scripts are being created and tested in the [Spyder IDE](https://www.spyder-ide.org/).
