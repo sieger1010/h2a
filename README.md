@@ -1,5 +1,5 @@
 # H-2A Labor Data
-### Normalized, and Combined Employment Data for H-2A Workers in the United States
+### Standardized, Combined, and Lightly Cleaned Employment Data for H-2A Workers in the United States
 <br>
 
 ## Visualizations
@@ -8,12 +8,12 @@ Visualized data is available for exploration on Tableau Public. [Tableau Public 
 ![Screenshot of Tableau Public Sieger.Bokschoten](screenshots/Screenshot2.png)
 
 ## Purpose
-This repository is intended to provide a single source for all H-2A employment data in the United States, and to make it easier to compare years together by normalizing the data. This data is intended for anyone interested in doing their own analysis using specialized software, or programs like Excel.
+This repository is intended to provide a single source for all H-2A employment data in the United States, and to make it easier to compare years together by standardizing the data. This data is intended for anyone interested in doing their own analysis using specialized software, or programs like Excel.
 
 Modifications to the data will be limited, and will only be made to correct inconsistencies in data quality. Steps like removing white space around text, or removing obvious typos will be documented in the python code.
 
 When analyzing H-2A data, it can be difficult to compare changes year over year for several reasons:
-1. The data is not normalized across all years.
+1. The data is not standardized across all years.
 2. The program dates for the DOL go from October 1st, to September 30th. This can create confusion when comparing reported data to calendar years.
 3. It's not obvious where to find historical data on the H-2A labor force.
 4. Reported data changes by year. Currently, the more recent the reported year, the more data that is included.
