@@ -4,7 +4,7 @@ save_data_on_exit = True
 save_history = True
 save_non_project_files = False
 project_type = 'empty-project-type'
-recent_files = ['combine_years.py', 'exploration.py', '..\\USDA Census 2022\\Census\\H2A_Data_Pull.py', 'data_cleaning.py', 'db_creation.py', 'processed_exports\\merge_naics_codes.py']
+recent_files = ['combine_years.py', 'exploration.py', '..\\USDA Census 2022\\Census\\H2A_Data_Pull.py', 'data_cleaning.py', 'db_creation.py', 'processed_exports\\merge_naics_codes.py', '..\\Needs Assesments\\Source Data\\CensusExploration.py', 'stream_data_pull_and_merge.py']
 
 [main]
 version = 0.2.0
